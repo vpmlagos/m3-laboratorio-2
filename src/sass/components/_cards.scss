@@ -1,0 +1,41 @@
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mixins;
+
+
+.card-body {
+  text-align: center;
+}
+
+.btncard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.card-img-top {
+  border-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.carousel-indicators button {
+  background-color: vars.$dark-color;
+}
+
+.carousel-indicators .active {
+  background-color: vars.$primary-color;
+}
+
+.card-doctor-list{
+  flex-direction: row;
+  max-width: 40em;
+}
+
+
+.card-doctor-list-img{
+  max-width: 50%;
+  margin: auto;
+  padding: 0.5em;
+  border-radius: 0.3em;
+}

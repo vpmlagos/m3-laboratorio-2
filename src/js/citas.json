@@ -1,0 +1,165 @@
+{
+    "Idlocal": 1,
+    "citas": [
+        {
+            "id": 1,
+            "pacienteId": 1,
+            "doctorId": 1,
+            "fecha": "2024-12-01T08:00:00",
+            "duracion": 30,
+            "unidad": 1
+          },
+          {
+            "id": 2,
+            "pacienteId": 2,
+            "doctorId": 2,
+            "fecha": "2024-12-01T09:00:00",
+            "duracion": 45,
+            "unidad": 1
+          },
+          {
+            "id": 3,
+            "pacienteId": 3,
+            "doctorId": 3,
+            "fecha": "2024-12-01T10:30:00",
+            "duracion": 40,
+            "unidad": 1
+          },
+          {
+            "id": 4,
+            "pacienteId": 1,
+            "doctorId": 4,
+            "fecha": "2024-12-02T11:00:00",
+            "duracion": 50,
+            "unidad": 1
+          },
+          {
+            "id": 5,
+            "pacienteId": 2,
+            "doctorId": 5,
+            "fecha": "2024-12-02T13:00:00",
+            "duracion": 35,
+            "unidad": 1
+          },
+          {
+            "id": 6,
+            "pacienteId": 3,
+            "doctorId": 6,
+            "fecha": "2024-12-02T14:30:00",
+            "duracion": 60,
+            "unidad": 1
+          },
+          {
+            "id": 7,
+            "pacienteId": 1,
+            "doctorId": 7,
+            "fecha": "2024-12-03T08:30:00",
+            "duracion": 20,
+            "unidad": 1
+          },
+          {
+            "id": 8,
+            "pacienteId": 2,
+            "doctorId": 8,
+            "fecha": "2024-12-03T09:45:00",
+            "duracion": 55,
+            "unidad": 1
+          },
+          {
+            "id": 9,
+            "pacienteId": 3,
+            "doctorId": 9,
+            "fecha": "2024-12-03T11:00:00",
+            "duracion": 30,
+            "unidad": 1
+          },
+          {
+            "id": 10,
+            "pacienteId": 1,
+            "doctorId": 10,
+            "fecha": "2024-12-04T12:30:00",
+            "duracion": 45,
+            "unidad": 1
+          },
+          {
+            "id": 11,
+            "pacienteId": 2,
+            "doctorId": 11,
+            "fecha": "2024-12-04T14:00:00",
+            "duracion": 40,
+            "unidad": 1
+          },
+          {
+            "id": 12,
+            "pacienteId": 3,
+            "doctorId": 12,
+            "fecha": "2024-12-04T15:30:00",
+            "duracion": 35,
+            "unidad": 1
+          },
+          {
+            "id": 13,
+            "pacienteId": 1,
+            "doctorId": 13,
+            "fecha": "2024-12-05T08:00:00",
+            "duracion": 25,
+            "unidad": 1
+          },
+          {
+            "id": 14,
+            "pacienteId": 2,
+            "doctorId": 14,
+            "fecha": "2024-12-05T09:15:00",
+            "duracion": 50,
+            "unidad": 1
+          },
+          {
+            "id": 15,
+            "pacienteId": 3,
+            "doctorId": 15,
+            "fecha": "2024-12-05T10:45:00",
+            "duracion": 30,
+            "unidad": 1
+          },
+          {
+            "id": 16,
+            "pacienteId": 1,
+            "doctorId": 16,
+            "fecha": "2024-12-06T13:00:00",
+            "duracion": 55,
+            "unidad": 1
+          },
+          {
+            "id": 17,
+            "pacienteId": 2,
+            "doctorId": 17,
+            "fecha": "2024-12-06T14:30:00",
+            "duracion": 40,
+            "unidad": 1
+          },
+          {
+            "id": 18,
+            "pacienteId": 3,
+            "doctorId": 17,
+            "fecha": "2024-12-06T16:00:00",
+            "duracion": 60,
+            "unidad": 1
+          },
+          {
+            "id": 19,
+            "pacienteId": 1,
+            "doctorId": 1,
+            "fecha": "2024-12-07T10:30:00",
+            "duracion": 25,
+            "unidad": 1
+          },
+          {
+            "id": 20,
+            "pacienteId": 2,
+            "doctorId": 2,
+            "fecha": "2024-12-07T12:00:00",
+            "duracion": 35,
+            "unidad": 1
+          }
+    ]
+}

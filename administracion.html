@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital - Gestión de Doctores y Pacientes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        .result {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Gestión de Doctores y Pacientes en el Hospital</h1>
+
+    <!-- Mostrar Doctores -->
+    <h2>Doctores</h2>
+    <div id="doctores-list" class="result"></div>
+    <button onclick="mostrarDoctores()">Listar Doctores</button>
+
+    <h2>Agregar y Eliminar Doctores</h2>
+    <button onclick="agregarDoctor()">Agregar Doctor</button>
+    <button onclick="eliminarDoctor()">Eliminar Doctor</button>
+
+    <h2>Citas</h2>
+    <div id="citas-list" class="result"></div>
+    <button onclick="agregarCita()">Agregar Cita</button>
+    <button onclick="atenderCita()">Atender Cita</button>
+
+    <h2>Pacientes</h2>
+    <div id="pacientes-list" class="result"></div>
+    <button onclick="agregarPaciente()">Agregar Paciente</button>
+    <button onclick="atenderPaciente()">Atender Paciente</button>
+
+    <script>
+        // Estructuras de Datos
+        class Doctor {
+            constructor(Id, nombre, especialidad) {
+                this.Id = Id;
+                this.nombre = nombre;
+                this.especialidad = especialidad;
+            }
+        }
+
+        class PilaCitas {
+            constructor() {
+                this.citas = [];
+            }
+
+            agregarCita(cita) {
+                this.citas.push(cita);
+            }
+
+            atenderCita() {
+                if (this.citas.length > 0) {
+                    return this.citas.pop();
+                }
+                return null;
+            }
+
+            mostrarCitas() {
+                return this.citas.map(cita => `Médico: ${cita.nombreMedico}, Día: ${cita.dia}, Hora: ${cita.hora}`).join('<br>');
+            }
+        }
+
+        class ColaPacientes {
+            constructor() {
+                this.pacientes = [];
+            }
+
+            agregarPaciente(paciente) {
+                this.pacientes.push(paciente);
+            }
+
+            atenderPaciente() {
+                if (this.pacientes.length > 0) {
+                    return this.pacientes.shift();
+                }
+                return null;
+            }
+
+            mostrarPacientes() {
+                return this.pacientes.map(paciente => `Paciente: ${paciente.nombre}, Edad: ${paciente.edad}`).join('<br>');
+            }
+        }
+
+        const pilaCitas = new PilaCitas();
+        const colaPacientes = new ColaPacientes();
+
+        let doctores = [];
+        let idContador = 1;
+        const ultimoDoctor = 18
+
+        async function cargarDatos() {
+            try {
+                // Fetch para obtener los datos de doctores y citas
+                const [doctoresResponse, citasResponse] = await Promise.all([
+                    fetch("./src/js/medicos.json"),
+                    fetch("./src/js/citas.json")
+                ]);
+
+                if (!doctoresResponse.ok || !citasResponse.ok) {
+                    throw new Error("Error al obtener los datos del servidor");
+                }
+
+                const doctoresData = await doctoresResponse.json();
+                const citas = await citasResponse.json();
+
+                // Agregar los doctores del JSON
+                doctoresData.forEach(doctor => {
+                    doctores.push(new Doctor(doctor.Id, doctor.nombre, doctor.especialidad));
+                });
+
+                // Agregar las citas del JSON a la pila
+                citas.forEach(cita => {
+                    pilaCitas.agregarCita({
+                        nombreMedico: cita.nombreMedico,
+                        dia: cita.dia,
+                        hora: cita.hora
+                    });
+                });
+
+                // Mostrar los doctores y las citas cargadas
+                mostrarDoctores();
+                document.getElementById('citas-list').innerHTML = pilaCitas.mostrarCitas();
+            } catch (error) {
+                console.error("Error al cargar los datos:", error.message);
+            }
+        }
+
+        // Funciones para interactuar con la interfaz
+
+        function mostrarDoctores() {
+            document.getElementById('doctores-list').innerHTML = doctores.map(doctor => `ID: ${doctor.Id}, Nombre: ${doctor.nombre}, Especialidad: ${doctor.especialidad}`).join('<br>');
+        }
+
+        function agregarDoctor() {
+            
+            let nombre = prompt("¿Cuál es el nombre del doctor?");
+            let especialidad = prompt("¿Cuál es la especialidad del doctor?");
+            
+            
+            let doctor = new Doctor(idContador++, nombre, especialidad);
+            doctores.push(doctor);
+            alert("Doctor agregado");
+            mostrarDoctores();
+        }
+
+        function eliminarDoctor() {
+            let id = prompt("¿Cuál es el ID del doctor a eliminar?");
+            id = parseInt(id);
+            doctores = doctores.filter(doctor => doctor.Id !== id);
+            alert("Doctor eliminado");
+            mostrarDoctores();
+        }
+
+        function agregarCita() {
+            pilaCitas.agregarCita({ nombreMedico: "Dr. Juan Pérez", dia: "2024-12-10", hora: "09:00" });
+            pilaCitas.agregarCita({ nombreMedico: "Dr. Mario Rosales", dia: "2024-12-10", hora: "11:00" });
+            alert("Citas agregadas");
+            document.getElementById('citas-list').innerHTML = pilaCitas.mostrarCitas();
+        }
+
+        function atenderCita() {
+            const citaAtendida = pilaCitas.atenderCita();
+            if (citaAtendida) {
+                alert(`Cita atendida para el médico ${citaAtendida.nombreMedico}`);
+            } else {
+                alert("No hay citas pendientes");
+            }
+            document.getElementById('citas-list').innerHTML = pilaCitas.mostrarCitas();
+        }
+
+        function agregarPaciente() {
+            colaPacientes.agregarPaciente({ nombre: "Pedro Díaz", edad: 45 });
+            colaPacientes.agregarPaciente({ nombre: "Laura López", edad: 32 });
+            alert("Pacientes agregados");
+            document.getElementById('pacientes-list').innerHTML = colaPacientes.mostrarPacientes();
+        }
+
+        function atenderPaciente() {
+            const pacienteAtendido = colaPacientes.atenderPaciente();
+            if (pacienteAtendido) {
+                alert(`Paciente atendido: ${pacienteAtendido.nombre}`);
+            } else {
+                alert("No hay pacientes en espera");
+            }
+            document.getElementById('pacientes-list').innerHTML = colaPacientes.mostrarPacientes();
+        }
+
+        // Llamar a la función para cargar los datos de los JSON al cargar la página
+        window.onload = cargarDatos;
+    </script>
+</body>
+
+</html>
