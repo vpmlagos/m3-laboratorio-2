@@ -95,7 +95,7 @@
             "doctorId": 12,
             "fecha": "2024-12-04T15:30:00",
             "duracion": 35,
-            "unidad": 1
+            "unidad": 4
           },
           {
             "id": 13,
@@ -127,7 +127,7 @@
             "doctorId": 16,
             "fecha": "2024-12-06T13:00:00",
             "duracion": 55,
-            "unidad": 1
+            "unidad": 2
           },
           {
             "id": 17,
